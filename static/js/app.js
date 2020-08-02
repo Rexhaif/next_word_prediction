@@ -31,44 +31,10 @@ jQuery(document).ready(function () {
                 }
             }).done(function (jsondata, textStatus, jqXHR) {
                 console.log(jsondata)
-                $('#text_bert').val(jsondata['bert'])
-                $('#text_xlnet').val(jsondata['xlnet'])
-                $('#text_xlm').val(jsondata['xlm'])
-                $('#text_bart').val(jsondata['bart'])
-                $('#text_electra').val(jsondata['electra'])
-                $('#text_roberta').val(jsondata['roberta'])
+                $('#text_albert').val(jsondata['albert'])
             }).fail(function (jsondata, textStatus, jqXHR) {
                 console.log(jsondata)
             });
         }
-    })
-
-    $('#btn-process').on('click', function () {
-        $.ajax({
-            url: '/get_mask_predictions',
-            type: "post",
-            contentType: "application/json",
-            dataType: "json",
-            data: JSON.stringify({
-                "input_text": $('#mask_input_text').val(),
-                "top_k": slider_mask.val(),
-            }),
-            beforeSend: function () {
-                $('.overlay').show()
-            },
-            complete: function () {
-                $('.overlay').hide()
-            }
-        }).done(function (jsondata, textStatus, jqXHR) {
-            console.log(jsondata)
-            $('#mask_text_bert').val(jsondata['bert'])
-            $('#mask_text_xlnet').val(jsondata['xlnet'])
-            $('#mask_text_xlm').val(jsondata['xlm'])
-            $('#mask_text_bart').val(jsondata['bart'])
-            $('#mask_text_electra').val(jsondata['electra'])
-            $('#mask_text_roberta').val(jsondata['roberta'])
-        }).fail(function (jsondata, textStatus, jqXHR) {
-            console.log(jsondata)
-        });
     })
 })
