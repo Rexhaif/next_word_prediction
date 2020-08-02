@@ -32,6 +32,9 @@ jQuery(document).ready(function () {
             }).done(function (jsondata, textStatus, jqXHR) {
                 console.log(jsondata)
                 $('#text_albert').val(jsondata['albert'])
+                $('#text_albert_large').val(jsondata['albert_large'])
+                $('#text_distilbert').val(jsondata['distilbert'])
+                $('#text_roberta').val(jsondata['roberta'])
             }).fail(function (jsondata, textStatus, jqXHR) {
                 console.log(jsondata)
             });

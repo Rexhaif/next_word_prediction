@@ -2,9 +2,23 @@
 import torch
 import string
 
-from transformers import AlbertTokenizer, AlbertForMaskedLM
+from transformers import \
+    AlbertTokenizer, AlbertForMaskedLM,\
+    DistilBertTokenizer, DistilBertForMaskedLM, \
+    RobertaTokenizer, RobertaForMaskedLM
+
 albert_tokenizer = AlbertTokenizer.from_pretrained('albert-base-v2')
 albert_model = AlbertForMaskedLM.from_pretrained('albert-base-v2').eval()
+
+albert_large_tokenizer = AlbertTokenizer.from_pretrained('albert-large-v2')
+albert_large_model = AlbertForMaskedLM.from_pretrained('albert-large-v2').eval()
+
+distilbert_tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-cased')
+distilbert_model = DistilBertForMaskedLM.from_pretrained('distilbert-base-cased').eval()
+
+roberta_tokenizer = RobertaTokenizer.from_pretrained('roberta-large')
+roberta_model = RobertaForMaskedLM.from_pretrained('roberta-large').eval()
+
 
 top_k = 10
 
@@ -31,11 +45,34 @@ def encode(tokenizer, text_sentence, add_special_tokens=True):
 
 
 def get_all_predictions(text_sentence, top_clean=5):
-    # ========================= BERT =================================
-    print(text_sentence)
-    input_ids, mask_idx = encode(albert_tokenizer, text_sentence)
+    # ========================= ALBERT =================================
+    input_ids, mask_idx = encode(albert_tokenizer, text_sentence.lower())
     with torch.no_grad():
         predict = albert_model(input_ids)[0]
     albert = decode(albert_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
 
-    return {'albert': albert}
+    # ========================= ALBERT-large =================================
+    input_ids, mask_idx = encode(albert_large_tokenizer, text_sentence.lower())
+    with torch.no_grad():
+        predict = albert_large_model(input_ids)[0]
+    albert_large = decode(albert_large_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
+
+    # ========================= DistillBERT =================================
+    input_ids, mask_idx = encode(distilbert_tokenizer, text_sentence)
+    with torch.no_grad():
+        predict = distilbert_model(input_ids)[0]
+    distilbert = decode(distilbert_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
+
+    # ========================= RoBERTa Large =================================
+    input_ids, mask_idx = encode(roberta_tokenizer, text_sentence)
+    with torch.no_grad():
+        predict = roberta_model(input_ids)[0]
+    roberta = decode(roberta_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
+
+
+    return {
+        'albert': albert,
+        'albert_large': albert_large,
+        'distilbert': distilbert,
+        'roberta': roberta
+    }
