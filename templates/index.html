@@ -48,86 +48,12 @@
             <h4> Predictions </h4>
             <div class="form-row">
                 <div class="form-group col-md-2">
-                    <label for="text_paragraphs">BERT</label>
-                    <textarea class="form-control txt_response" id="text_bert" readonly></textarea>
+                    <label for="text_paragraphs">ALBERT-base-v2</label>
+                    <textarea class="form-control txt_response" id="text_albert" readonly></textarea>
                 </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">XLNET</label>
-                    <textarea class="form-control txt_response" id="text_xlnet" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">XLM-Roberta</label>
-                    <textarea class="form-control txt_response" id="text_xlm" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">BART</label>
-                    <textarea class="form-control txt_response" id="text_bart" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">ELECTRA</label>
-                    <textarea class="form-control txt_response" id="text_electra" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">ROBERTA</label>
-                    <textarea class="form-control txt_response" id="text_roberta" readonly></textarea>
                 </div>
             </div>
             <hr>
-
-            <!-- MASKED PREDICTION -->
-            <center>
-                <h3>Masked Word Prediction</h3>
-            </center>
-
-            <div class="form-row">
-                <div class="form-group col-md-8">
-                    <br>
-                    <h4>Type a sentence, include &lt;mask&gt; to predict the word and hit Predict.</h4>
-                </div>
-                <div class="form-group col-md-2">
-                    <br>
-                    <label for="max_words" id="label_max_words">Top k words: 5</label>
-                    <input type="range" class="custom-range" min="1" max="10" value="5" step="1" id="max_words_mask">
-                </div>
-                <div class="form-group col-md-2">
-                    <label></label>
-                    <button type="button" class="btn btn-primary btn-lg btn-block" id="btn-process">Predict</button>
-                </div>
-            </div>
-            <div class="form-row">
-                <textarea class="form-control txt_input" id="mask_input_text" rows="1"></textarea>
-            </div>
-
-            <h4> Predictions </h4>
-            <div class="form-row">
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">BERT</label>
-                    <textarea class="form-control txt_response" id="mask_text_bert" readonly rows="1"></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">XLNET</label>
-                    <textarea class="form-control txt_response" id="mask_text_xlnet" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">XLM-Roberta</label>
-                    <textarea class="form-control txt_response" id="mask_text_xlm" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">BART</label>
-                    <textarea class="form-control txt_response" id="mask_text_bart" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">ELECTRA</label>
-                    <textarea class="form-control txt_response" id="mask_text_electra" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">ROBERTA</label>
-                    <textarea class="form-control txt_response" id="mask_text_roberta" readonly></textarea>
-                </div>
-            </div>
-
-
-
         </div>
         <div class="col-sm-1"></div>
     </div>
